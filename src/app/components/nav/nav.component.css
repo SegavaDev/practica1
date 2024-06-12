@@ -1,0 +1,52 @@
+.nav {
+    width: 250px;
+    height: 100%;
+    background-color: rgb(0, 47, 255);
+    display: grid;
+    grid-template-rows: 20%;
+    align-items: center;
+    justify-items: center;
+
+    .nav__logo {
+        width: 80px;
+        height: 80px;
+
+        .logo {
+            width: 100%;
+        }
+    }
+
+    .nav__botones {
+        width: 200px;
+        align-self: start;
+        display: grid;
+        gap: 5px;
+
+        .botones__separador {
+            width: 100%;
+            height: 40px;
+            list-style: none;
+            border: transparent 2px solid;
+
+            a {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                font-size: 22pt;
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+                text-indent: 10px;
+            }
+
+        }
+
+
+        .botones__separador:hover {
+            border: gray 2px dashed;
+        }
+    }
+
+}
+

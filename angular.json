@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ecomm": {
+    "practica1": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ecomm",
+            "outputPath": "dist/practica1",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ecomm:build:production"
+              "buildTarget": "practica1:build:production"
             },
             "development": {
-              "buildTarget": "ecomm:build:development"
+              "buildTarget": "practica1:build:development"
             }
           },
           "defaultConfiguration": "development"
