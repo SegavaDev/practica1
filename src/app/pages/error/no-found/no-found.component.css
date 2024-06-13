@@ -15,7 +15,7 @@
         justify-items: center;
     }
 
-    .errorHttp__a {
+    .errorHttp__regresar {
         display: block;
         align-content: center;
         text-align: center;
@@ -42,7 +42,7 @@
             }
         }
 
-        .errorHttp__a {
+        .errorHttp__regresar {
             width: 100px;
             height: 40px;
         }
@@ -62,9 +62,28 @@
             }
         }
 
-        .errorHttp__a {
+        .errorHttp__regresar {
             width: 150px;
             height: 60px;
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .contenedor__errorHttp {
+        .errorHttp__guia {
+            .errorHttp__h1 {
+
+            }
+
+            .errorHttp__p {
+
+            }
+        }
+
+        .errorHttp__regresar {
+            width: 180px;
+            font-size: 16pt;
         }
     }
 }

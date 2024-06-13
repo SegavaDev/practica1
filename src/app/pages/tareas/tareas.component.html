@@ -1,0 +1,15 @@
+<div class="contenedor__vista">
+    <app-nav></app-nav>
+    <div class="contenedor__apps">
+        <div class="contenedor__tareas">
+            <a [ngClass]="{'tareas__opcion': true, 'verde': hayActivas()}" routerLink="/activas">
+                <h1 class="tareas__h1">Tareas activas</h1>
+                <b class="tareas__cantidad">{{tareas.activas.length}}</b>
+            </a>
+            <a [ngClass]="{'tareas__opcion': true, 'azul': hayTerminadas()}" routerLink="/finalizadas">
+                <h1 class="tareas__h1">Tareas terminadas</h1>
+                <b class="tareas__cantidad">{{tareas.terminadas.length}}</b>
+            </a>
+        </div>
+    </div>
+</div>
