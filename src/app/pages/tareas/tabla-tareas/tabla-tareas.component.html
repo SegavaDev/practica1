@@ -1,0 +1,55 @@
+<div class="contenedor__titulo">
+    <h1>Tareas activas</h1>
+</div>
+
+<div class="contenedor__tabla">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+                <th>Link</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td>
+                    <div class="btns__accion">
+                        <button [ngClass]="{'btn__eliminar': true}" type="button">Eliminar</button>
+                        <button [ngClass]="{'btn__modificar': true}" type="button">Modificar</button>
+                        <button [ngClass]="{'btn__finalizar': true}" type="button">Finalizar</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td [style.width.%]="tamanoTds">Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit.</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
+                <td>
+                    <div class="btns__accion">
+                        <button [ngClass]="{'btn__eliminar': true}" type="button">Eliminar</button>
+                        <button [ngClass]="{'btn__modificar': true}" type="button">Modificar</button>
+                        <button [ngClass]="{'btn__finalizar': true}" type="button">Finalizar</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="agregar__tarea" title="Agregar tarea">
+        <button type="button">
+            <img src="add tarea.svg" alt="Icono agregar tarea">
+        </button>
+    </div>
+</div>

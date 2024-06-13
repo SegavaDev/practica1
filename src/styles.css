@@ -17,6 +17,14 @@
     overflow-y: auto;
 }
 
+.contenedor__apps::-webkit-scrollbar {
+    background-color: white;
+}
+
+.contenedor__apps::-webkit-scrollbar-thumb {
+    background-color: blue;
+}
+
 @media (max-width: 1400px) {}
 @media (max-width: 1200px) {}
 @media (max-width: 1000px) {}

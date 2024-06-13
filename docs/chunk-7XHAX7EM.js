@@ -1,0 +1,1 @@
+import{a as o}from"./chunk-NIJT5DAP.js";import"./chunk-AEFTN3AB.js";import"./chunk-6T6RKPQK.js";var n=[{path:"",component:o},{path:"activas",loadChildren:()=>import("./chunk-4OX6QAYF.js").then(t=>t.TAREAS_ACTIVAS_ROUTES)}];export{n as TAREAS_ROUTES};
