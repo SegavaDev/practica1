@@ -1,16 +1,19 @@
 <nav class="nav">
-    <div class="nav__logo">
+    <a routerLink="/" class="nav__logo">
         <img src="shop.svg" alt="Imagen del logo" class="logo">
-    </div>
+    </a>
     <ul class="nav__botones">
         <li class="botones__separador">
-            <a routerLink="/tareas">Tareas</a>
+            <img class="separador__icono" src="tareas.svg" alt="Icono tareas">
+            <a class="separador__a" routerLink="/tareas">Tareas</a>
         </li>
         <li class="botones__separador">
-            <a routerLink="/inventario">Inventario</a>
+            <img class="separador__icono" src="productos.svg" alt="Icono productos">
+            <a class="separador__a" routerLink="/inventario">Inventario</a>
         </li>
         <li class="botones__separador">
-            <a routerLink="/contactos">Contactos</a>
+            <img class="separador__icono" src="mail.svg" alt="Icono contactos">
+            <a class="separador__a" routerLink="/contactos">Contactos</a>
         </li>
     </ul>
 </nav>
