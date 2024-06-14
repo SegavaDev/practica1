@@ -4,6 +4,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavComponent } from '../../components/nav/nav.component';
 import { LocalStorageService } from './local-storage.service';
 import { TareaPersistenciaInterface } from '../../models/tareas/tareasPersistencia.interface';
+import { TareaInterface } from '../../models/tareas/tarea.interface';
 
 @Component({
   selector: 'app-tareas',
@@ -19,7 +20,7 @@ export class TareasComponent {
         terminadas: []
     };
 
-    constructor(localStorageService: LocalStorageService) {
+    constructor(private localStorageService: LocalStorageService) {
         const dataStorage: TareaPersistenciaInterface = localStorageService.verTareas();
 
         this.tareas.activas = dataStorage.activas;

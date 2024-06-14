@@ -1,7 +1,7 @@
 export interface TareaInterface {
     nombre: String;
     descripcion: String;
-    fecha: Date;
-    link?: String;
+    fecha: String;
+    link: String;
     estado: boolean;
 }
