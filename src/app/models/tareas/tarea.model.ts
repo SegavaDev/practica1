@@ -3,15 +3,15 @@ import { TareaInterface } from "./tarea.interface";
 export class Tarea implements TareaInterface {
     private _nombre: String;
     private _descripcion: String;
-    private _fecha: Date;
-    private _link?: String | undefined;
+    private _fecha: String;
+    private _link: String;
     private _estado: boolean;
 
     constructor(
         nombre: String,
         descripcion: String,
-        fecha: Date,
-        link: String | undefined,
+        fecha: String,
+        link: String,
         estado: boolean
     ) {
         this._nombre = nombre;
@@ -41,7 +41,7 @@ export class Tarea implements TareaInterface {
       return this._fecha;
     }
 
-    set fecha(val: Date) {
+    set fecha(val: String) {
       this._fecha = val;
     }
 
@@ -49,7 +49,7 @@ export class Tarea implements TareaInterface {
       return this._link;
     }
 
-    set link(val: String | undefined) {
+    set link(val: String) {
       this._link = val;
     }
 

@@ -39,15 +39,15 @@ export class LocalStorageService {
     }
 
     convertirTarea(lista: [any]) {
-        const data: [TareaInterface?] = [];
+        const data: any[] = [];
 
         for (let item of lista) {
             const tarea = new Tarea(
-                item.nombre,
-                item.descripcion,
-                item.fecha,
-                item.link,
-                item.estado
+                item._nombre,
+                item._descripcion,
+                item._fecha,
+                item._link,
+                item._estado
             );
 
             data.push(tarea);
@@ -59,6 +59,26 @@ export class LocalStorageService {
     guardarTareas(tareas: TareaPersistenciaInterface) {
         localStorage.setItem(this.keyStorage, JSON.stringify(tareas));
         this.cargarTareas();
+    }
+
+    guardarTareaActiva(tarea: TareaInterface) {
+        this.tareas.activas.push(tarea);
+        this.guardarTareas(this.tareas);
+    }
+
+    guardarTareaTerminada(tarea: TareaInterface) {
+        this.tareas.terminadas.push(tarea);
+        this.guardarTareas(this.tareas);
+    }
+
+    actualizarTareasActivas(tareas: TareaInterface[]) {
+        this.tareas.activas = tareas;
+        this.guardarTareas(this.tareas);
+    }
+
+    actualizarTareasTerminadas(tareas: TareaInterface[]) {
+        this.tareas.terminadas = tareas;
+        this.guardarTareas(this.tareas);
     }
 
     eliminarTodo() {

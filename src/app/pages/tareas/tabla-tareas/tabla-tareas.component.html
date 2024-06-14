@@ -3,52 +3,75 @@
 </div>
 
 <div class="contenedor__tabla">
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Fecha</th>
-                <th>Link</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td>
-                    <div class="btns__accion">
-                        <button [ngClass]="{'btn__eliminar': true}" type="button">Eliminar</button>
-                        <button [ngClass]="{'btn__modificar': true}" type="button">Modificar</button>
-                        <button [ngClass]="{'btn__finalizar': true}" type="button">Finalizar</button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td [style.width.%]="tamanoTds">Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit.</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td [style.width.%]="tamanoTds">xcvxcvxcv</td>
-                <td>
-                    <div class="btns__accion">
-                        <button [ngClass]="{'btn__eliminar': true}" type="button">Eliminar</button>
-                        <button [ngClass]="{'btn__modificar': true}" type="button">Modificar</button>
-                        <button [ngClass]="{'btn__finalizar': true}" type="button">Finalizar</button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    @if (hayTareas()) {
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Fecha</th>
+                    <th>Link</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (tarea of tareas; track $index) {
+                    <tr>
+                        <td>{{$index + 1}}</td>
+                        <td [style.width.%]="tamanoTds">{{tarea.nombre}}</td>
+                        <td [style.width.%]="tamanoTds">{{tarea.descripcion}}</td>
+                        <td [style.width.%]="tamanoTds">{{tarea.fecha}}</td>
+                        <td [style.width.%]="tamanoTds">{{tarea.link}}</td>
+                        <td [ngStyle]="{'text-align': 'center'}">{{tarea.estado ? "Activo" : "Inactivo"}}</td>
+                        <td [style.width.%]="tamanoTds">
+                            <div class="btns__accion">
+                                <button [style]="{'background-color': 'red'}" [ngClass]="{'btn__eliminar': true}" (click)="eliminar($index)" type="button">Eliminar</button>
+                                <button [style]="{'background-color': 'blue'}" [ngClass]="{'btn__modificar': true}" type="button">Modificar</button>
+                                <button [style]="{'background-color': 'green'}" [ngClass]="{'btn__finalizar': true}" type="button">Finalizar</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @else {
+        <div class="sin__tareas">
+            <p>No hay tareas disponibles</p>
+        </div>
+    }
+
+    @if (mostrarForm) {
+        <!-- Formulario nueva tarea -->
+        <div class="marco__formulario">
+            <form [formGroup]="formNuevaTarea" (ngSubmit)="guardarTarea()">
+                <div class="form__titulo">
+                    <h1>Crear tarea</h1>
+                </div>
+                <div [style]="{'justify-content': 'left'}" class="form__separador">
+                    <input type="date" formControlName="fecha" required placeholder="Fecha entrega">
+                </div>
+                <div [style]="{'justify-content': 'left'}" class="form__separador">
+                    <input type="text" formControlName="nombre" required placeholder="Nombre de la tarea">
+                </div>
+                <div class="form__separador">
+                    <textarea type="text" formControlName="descripcion" required placeholder="Agregue una descripción..."></textarea>
+                </div>
+                <div class="form__separador">
+                    <input type="text" formControlName="link" placeholder="Links...">
+                </div>
+                <div [style]="{'display': 'flex', 'gap': 5 + 'px'}" class="form__separador">
+                    <button type="button" (click)="mostrarFormNuevaTarea()">Cancelar</button>
+                    <input type="submit" value="Crear tarea">
+                </div>
+            </form>
+        </div>
+    }
 
     <div class="agregar__tarea" title="Agregar tarea">
-        <button type="button">
+        <button type="button" (click)="mostrarFormNuevaTarea()">
             <img src="add tarea.svg" alt="Icono agregar tarea">
         </button>
     </div>

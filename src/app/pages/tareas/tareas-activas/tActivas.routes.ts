@@ -3,6 +3,6 @@ import { TareasActivasComponent } from "./tareas-activas.component";
 
 export const TAREAS_ACTIVAS_ROUTES: Routes = [
     {
-        path: "", component: TareasActivasComponent
+        path: "", component: TareasActivasComponent, data: {title: 'Tareas activas', favicon: 'tareas.svg'}
     }
 ]
