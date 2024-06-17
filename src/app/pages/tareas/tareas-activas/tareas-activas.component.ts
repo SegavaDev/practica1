@@ -1,36 +1,41 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavComponent } from '../../../components/nav/nav.component';
-import { TablaTareasComponent } from '../tabla-tareas/tabla-tareas.component';
 import { TareaInterface } from '../../../models/tareas/tarea.interface';
 import { LocalStorageService } from '../local-storage.service';
+import { TablaTareasComponent } from '../tabla-tareas/tabla-tareas.component';
 
 @Component({
-  selector: 'app-tareas-activas',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink, NavComponent, TablaTareasComponent],
-  templateUrl: './tareas-activas.component.html',
-  styleUrl: './tareas-activas.component.css',
-  providers: [LocalStorageService]
+    selector: 'app-tareas-activas',
+    standalone: true,
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        RouterLink,
+        NavComponent,
+        TablaTareasComponent,
+    ],
+    templateUrl: './tareas-activas.component.html',
+    styleUrl: './tareas-activas.component.css'
 })
-export class TareasActivasComponent {
-    tareasActivas: TareaInterface[] | [];
+export class TareasActivasComponent implements OnInit {
+    tareasActivas: TareaInterface[] = [];
+    mostrarNav: boolean = true;
 
-    constructor(private localStorageService: LocalStorageService) {
-        this.tareasActivas = localStorageService.verTareas().activas;
+    constructor(private localStorageService: LocalStorageService) {}
+
+    ngOnInit(): void {
+        this.localStorageService.tareas$.subscribe(
+            (tareas) => (this.tareasActivas = tareas.activas)
+        );
+    }
+
+    mostrarNavbar(event: boolean) {
+        this.mostrarNav = event;
     }
 
     hayTareas() {
         return this.tareasActivas.length > 0;
     }
-
-    gurdarTarea(tarea: TareaInterface) {
-        this.localStorageService.guardarTareaActiva(tarea);
-    }
-
-    actualizarTareasActivas(tareas: TareaInterface[]) {
-        this.localStorageService.actualizarTareasActivas(tareas);
-    }
-
 }

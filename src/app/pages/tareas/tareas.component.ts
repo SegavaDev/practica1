@@ -1,30 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavComponent } from '../../components/nav/nav.component';
-import { LocalStorageService } from './local-storage.service';
 import { TareaPersistenciaInterface } from '../../models/tareas/tareasPersistencia.interface';
-import { TareaInterface } from '../../models/tareas/tarea.interface';
+import { LocalStorageService } from './local-storage.service';
 
 @Component({
-  selector: 'app-tareas',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, NavComponent, RouterLink],
-  templateUrl: './tareas.component.html',
-  styleUrl: './tareas.component.css',
-  providers: [LocalStorageService]
+    selector: 'app-tareas',
+    standalone: true,
+    imports: [CommonModule, RouterOutlet, NavComponent, RouterLink],
+    templateUrl: './tareas.component.html',
+    styleUrl: './tareas.component.css',
 })
-export class TareasComponent {
+export class TareasComponent implements OnInit {
     tareas: TareaPersistenciaInterface = {
         activas: [],
-        terminadas: []
+        terminadas: [],
     };
 
-    constructor(private localStorageService: LocalStorageService) {
-        const dataStorage: TareaPersistenciaInterface = localStorageService.verTareas();
+    constructor(private localStorageService: LocalStorageService) {}
 
-        this.tareas.activas = dataStorage.activas;
-        this.tareas.terminadas = dataStorage.terminadas;
+    ngOnInit(): void {
+        this.localStorageService.tareas$.subscribe(
+            tareas => {
+                this.tareas.activas = tareas.activas;
+                this.tareas.terminadas = tareas.terminadas;
+            }
+        )
     }
 
     hayActivas() {
@@ -34,5 +36,4 @@ export class TareasComponent {
     hayTerminadas() {
         return this.tareas.terminadas.length > 0;
     }
-
 }

@@ -1,0 +1,41 @@
+<!-- Formulario actualizar tarea -->
+<div class="marco__formulario">
+    <form [formGroup]="formActualizarTarea" (ngSubmit)="enviarForm()">
+        <div class="form__titulo">
+            <h1>Actualizar tarea</h1>
+        </div>
+        <div [style]="{'justify-content': 'left'}" class="form__separadorM">
+            <input type="date" formControlName="fecha" required>
+            @if(getValid('fecha')) {
+                <span class="error">Fecha requerida</span>
+            }
+        </div>
+        <div [style]="{'justify-content': 'left'}" class="form__separador">
+            <input id="nombre" type="text" formControlName="nombre" required
+                placeholder="{{tareaAct.nombre}}">
+                @if(getValid('nombre')) {
+                    <span [style]="{'bottom': '20%'}" class="error">
+                        Nombre requerido
+                    </span>
+                }
+        </div>
+        <div class="form__separador">
+            <textarea type="text" formControlName="descripcion" required
+                placeholder="{{tareaAct.descripcion}}"></textarea>
+                @if(getValid('descripcion')) {
+                    <span [style]="{'bottom': '3%'}" class="error">
+                        Descripción requerida
+                    </span>
+                }
+        </div>
+        <div class="form__separador">
+            <input type="text" formControlName="link"
+                placeholder="{{tareaAct.link}}">
+        </div>
+        <div [style]="{'display': 'flex', 'gap': 5 + 'px'}"
+            class="form__separador">
+            <button type="button" (click)="btnCancelar()">Cancelar</button>
+            <input [disabled]="getValidBtn()" [ngClass]="{'disabled': getValidBtn()}" type="submit" value="Actualizar">
+        </div>
+    </form>
+</div>

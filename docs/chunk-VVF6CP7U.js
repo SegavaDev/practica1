@@ -1,1 +1,0 @@
-import{a}from"./chunk-LEMGBBJS.js";import"./chunk-24WWF6MJ.js";import"./chunk-2UOX4TLM.js";var e=[{path:"",component:a,data:{title:"Tareas",favicon:"tareas.svg"}},{path:"activas",loadChildren:()=>import("./chunk-2GDVTJEK.js").then(t=>t.TAREAS_ACTIVAS_ROUTES)}];export{e as TAREAS_ROUTES};
