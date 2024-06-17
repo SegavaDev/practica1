@@ -1,18 +1,19 @@
+import { Estado } from "../enums/estados.enum";
 import { TareaInterface } from "./tarea.interface";
 
 export class Tarea implements TareaInterface {
-    private _nombre: String;
-    private _descripcion: String;
-    private _fecha: String;
-    private _link: String;
-    private _estado: boolean;
+    private _nombre: string;
+    private _descripcion: string;
+    private _fecha: string;
+    private _link: string;
+    private _estado: Estado;
 
     constructor(
-        nombre: String,
-        descripcion: String,
-        fecha: String,
-        link: String,
-        estado: boolean
+        nombre: string,
+        descripcion: string,
+        fecha: string,
+        link: string,
+        estado: Estado
     ) {
         this._nombre = nombre;
         this._descripcion = descripcion;
@@ -25,7 +26,7 @@ export class Tarea implements TareaInterface {
       return this._nombre;
     }
 
-    set nombre(val: String) {
+    set nombre(val: string) {
       this._nombre = val;
     }
 
@@ -33,7 +34,7 @@ export class Tarea implements TareaInterface {
       return this._descripcion;
     }
 
-    set descripcion(val: String) {
+    set descripcion(val: string) {
       this._descripcion = val;
     }
 
@@ -41,7 +42,7 @@ export class Tarea implements TareaInterface {
       return this._fecha;
     }
 
-    set fecha(val: String) {
+    set fecha(val: string) {
       this._fecha = val;
     }
 
@@ -49,7 +50,7 @@ export class Tarea implements TareaInterface {
       return this._link;
     }
 
-    set link(val: String) {
+    set link(val: string) {
       this._link = val;
     }
 
@@ -57,7 +58,7 @@ export class Tarea implements TareaInterface {
       return this._estado;
     }
 
-    set estado(val: boolean) {
+    set estado(val: Estado) {
       this._estado = val;
     }
 

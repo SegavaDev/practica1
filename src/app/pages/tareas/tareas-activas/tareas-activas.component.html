@@ -1,6 +1,13 @@
 <div class="contenedor__vista">
+    @if (mostrarNav) {
     <app-nav></app-nav>
+    }
     <div class="contenedor__apps">
-        <app-tabla-tareas [tareas]="tareasActivas" (nuevaTarea)="gurdarTarea($event)" (eliminarTarea)="actualizarTareasActivas($event)"></app-tabla-tareas>
+        <div class="contenedor__fijo">
+            <div class="contenedor__titulo">
+                <h1>Tareas activas</h1>
+            </div>
+        </div>
+        <app-tabla-tareas (mostrarNav)="mostrarNavbar($event)"></app-tabla-tareas>
     </div>
 </div>

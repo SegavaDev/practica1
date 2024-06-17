@@ -1,7 +1,9 @@
+import { Estado } from "../enums/estados.enum";
+
 export interface TareaInterface {
-    nombre: String;
-    descripcion: String;
-    fecha: String;
-    link: String;
-    estado: boolean;
+    nombre: string;
+    descripcion: string;
+    fecha: string;
+    link: string;
+    estado: Estado;
 }

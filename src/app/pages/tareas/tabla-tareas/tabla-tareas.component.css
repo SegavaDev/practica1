@@ -1,25 +1,17 @@
-.contenedor__titulo {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: blue;
-    position: sticky;
-    top: 0;
-    left: 0;
-
-    h1 {
-        color: white;
-        font-weight: bold;
-    }
-}
-
 .contenedor__tabla {
     width: 100%;
-    height: calc(100% - 100px);
+    height: calc(100vh - 100px);
     display: block;
     justify-content: center;
+    overflow: auto;
+}
+
+.contenedor__tabla::-webkit-scrollbar {
+    background-color: #404080;
+}
+
+.contenedor__tabla::-webkit-scrollbar-thumb {
+    background-color: #2323D5;
 }
 
 .sin__tareas {
@@ -39,19 +31,19 @@ table {
     width: 100%;
     height: fit-content;
     border-collapse: collapse;
-    border: 1px rgb(255, 255, 255) solid;
     position: relative;
     top: 0;
     left: 0;
 
     thead tr {
-        background-color: blue;
+        background-color: #2323D5;
         height: 50px;
         font-size: 14pt;
         color: white;
         font-weight: bold;
         position: sticky;
         top: 0;
+        z-index: 3;
     }
 
     tbody tr {
@@ -61,10 +53,9 @@ table {
     }
 
     tbody tr td:first-child {
-        font-size: 14pt;
+        font-size: 16pt;
+        font-weight: bold;
         text-align: center;
-        border: blue 1px solid;
-        border-left: 0;
     }
 
     tbody tr td {
@@ -101,11 +92,11 @@ table {
     }
 
     tr:nth-child(even) {
-        background-color: rgba(143, 143, 153, 0.8);
+        background-color: #ABABFF;
     }
 
     tbody tr:hover {
-        background-color: rgba(0, 0, 255, 0.3);
+        background-color: #7D7DFF;
     }
 }
 
@@ -113,92 +104,28 @@ table {
     width: 60px;
     height: 60px;
     position: fixed;
-    bottom: 3%;
+    top: 2%;
     right: 3%;
     z-index: 2;
 
     button {
         width: 100%;
         height: 100%;
-        border: none;
-        background-color: rgb(0, 47, 255);
         cursor: pointer;
+        background-color: transparent;
+        border: 2px gray dashed;
     }
 
     button:hover {
-        opacity: .7;
+        background-color: #2323D5;
     }
 }
 
-.marco__formulario {
-    width: 100%;
-    height: calc(100% - 100px);
-    background-color: white;
-    z-index: 100;
-    position: fixed;
-    top: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    form {
-        width: 40%;
-        max-width: 600px;
-        min-width: 350px;
-        height: 600px;
-        display: grid;
-        align-items: center;
-        justify-items: center;
-        grid-template-columns: 1fr;
-        grid-template-rows: 20% repeat(5, 1fr);
-        box-shadow: 0 0 10px rgb(0,47,255);
-
-        .form__titulo {
-            width: 100%;
-            display: block;
-            align-content: center;
-            text-align: center;
-            font-size: 20pt;
-        }
-
-        .form__separador {
-            width: 90%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        textarea {
-            width: 100%;
-            height: 200px;
-            resize: none;
-            padding: 3px;
-        }
-
-        input {
-            width: 100%;
-            height: 70%;
-            padding: 0 3px;
-        }
-
-        input[type=date] {
-            width: 150px;
-            text-align: center;
-        }
-
-        input[type=submit], button {
-            width: 50%;
-            background-color: rgb(0,47,255);
-            font-size: 16pt;
-            color: white;
-            font-weight: bold;
-        }
-
-        button {
-            height: 70%;
-            background-color: red !important;
-        }
-
+@media (max-width: 500px) {
+    .agregar__tarea {
+        width: 40px;
+        height: 40px;
+        top: 4.5%;
     }
 }

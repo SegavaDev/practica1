@@ -1,49 +1,43 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Estado } from '../../../models/enums/estados.enum';
+import { CambioEstadoTareaInterface } from '../../../models/tareas/cambioEstado.interface';
 import { TareaInterface } from '../../../models/tareas/tarea.interface';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Tarea } from '../../../models/tareas/tarea.model';
+import { LocalStorageService } from '../local-storage.service';
+import { FormActualizarTareaComponent } from './form-actualizar-tarea/form-actualizar-tarea.component';
+import { FormNuevasTareasComponent } from './form-nuevas-tareas/form-nuevas-tareas.component';
 
 @Component({
-  selector: 'app-tabla-tareas',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './tabla-tareas.component.html',
-  styleUrl: './tabla-tareas.component.css'
+    selector: 'app-tabla-tareas',
+    standalone: true,
+    imports: [
+        CommonModule,
+        FormNuevasTareasComponent,
+        FormActualizarTareaComponent,
+    ],
+    templateUrl: './tabla-tareas.component.html',
+    styleUrl: './tabla-tareas.component.css',
 })
-export class TablaTareasComponent {
+export class TablaTareasComponent implements OnInit {
+    tareas: TareaInterface[] = [];
 
-    tamMinTabla: number = 6 * 200;
     tamanoTds: number = 100 / 5;
-    @Input() tareas: TareaInterface[] = [];
     mostrarForm: boolean = false;
+    mostrarFormActualizar: boolean = false;
+    indexActualizar?: number;
 
-    private fecha: Date = new Date();
-    fechaDefault: Date = this.fecha
+    tareaTabla: TareaInterface = new Tarea('', '', '', '', Estado.Activo);
 
-    tarea: TareaInterface = new Tarea("","","","",true);
+    @Output() mostrarNav = new EventEmitter<boolean>();
 
-    @Output() nuevaTarea = new EventEmitter<TareaInterface>();
-    @Output() modificarTarea = new EventEmitter<TareaInterface>();
-    @Output() eliminarTarea = new EventEmitter<TareaInterface[]>();
-    @Output() finalizarTarea = new EventEmitter<TareaInterface>();
+    constructor(private localStorageService: LocalStorageService) {}
 
-    formNuevaTarea = new FormGroup({
-        nombre: new FormControl(''),
-        descripcion: new FormControl(''),
-        fecha: new FormControl(''),
-        link: new FormControl(''),
-        estado: new FormControl(true)
-    });
-
-    calcularTamanoTd(cantidad: number) {
-        this.tamanoTds = 100 / cantidad;
-    }
-
-    mostrarTareas() {
-        console.log(this.tareas[0].nombre);
-
-        /* return this.tareas; */
+    ngOnInit(): void {
+        this.localStorageService.tareas$.subscribe(
+            (tareas) => (this.tareas = tareas['activas']) //Mejorar la tabla, hacerla reutilizable
+        );
     }
 
     hayTareas() {
@@ -52,33 +46,64 @@ export class TablaTareasComponent {
 
     mostrarFormNuevaTarea() {
         this.mostrarForm = !this.mostrarForm;
-        if(!this.mostrarForm) {
-            this.formNuevaTarea.reset({
-                nombre: "", descripcion: "", fecha: "", link: "", estado: true
-            })
-        }
+        this.mostrarNav.emit(!this.mostrarForm);
+    }
+
+    mostrarFormActualizarTarea() {
+        this.mostrarFormActualizar = !this.mostrarFormActualizar;
+        this.mostrarNav.emit(!this.mostrarFormActualizar);
     }
 
     toTarea(form: FormGroup): TareaInterface {
-
         return new Tarea(
             form.value.nombre,
             form.value.descripcion,
             form.value.fecha,
-            form.value.link === "" ? "Sin asignar" : form.value.link,
+            form.value.link === '' ? 'Sin asignar' : form.value.link,
             form.value.estado
         );
     }
 
-    guardarTarea() {
+    enviarFormActualizar(tarea: TareaInterface, index: number) {
+        this.indexActualizar= index;
+
+        this.tareaTabla = this.tareas[index];
+
+        this.mostrarFormActualizarTarea();
+    }
+
+    finalizar(index: number, tarea: TareaInterface) {
+        tarea.estado = Estado.Finalizado;
+        const cambio: CambioEstadoTareaInterface = {
+            eliminar: true,
+            indice: index,
+            tarea: tarea,
+        };
+        this.localStorageService.actualizarEstado(cambio);
+    }
+
+    modificar(tarea: TareaInterface) {
+        this.mostrarFormActualizarTarea();
+
+        const cambio: CambioEstadoTareaInterface = {
+            eliminar: false,
+            indice: this.indexActualizar,
+            tarea: tarea,
+        };
+        this.indexActualizar = undefined;
+        this.localStorageService.actualizarEstado(cambio);
+    }
+
+    guardarTarea(form: FormGroup) {
         this.mostrarForm = !this.mostrarForm;
-        const tarea: TareaInterface = this.toTarea(this.formNuevaTarea);
-        this.nuevaTarea.emit(tarea);
+        this.mostrarNav.emit(!this.mostrarForm);
+        const tarea: TareaInterface = this.toTarea(form);
+        this.tareas.push(tarea);
+        this.localStorageService.actualizarTareasActivas(this.tareas);
     }
 
     eliminar(index: number) {
         this.tareas.splice(index, 1);
-        this.eliminarTarea.emit(this.tareas)
+        this.localStorageService.actualizarTareasActivas(this.tareas);
     }
-
 }
