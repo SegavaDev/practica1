@@ -4,3 +4,5 @@ export interface TareaPersistenciaInterface {
     activas: TareaInterface[];
     terminadas: TareaInterface[];
 };
+
+export type keyTareaPersistencia = keyof TareaPersistenciaInterface;

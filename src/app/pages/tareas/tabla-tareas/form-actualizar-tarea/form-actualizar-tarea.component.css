@@ -9,6 +9,7 @@
     display: grid;
     align-items: center;
     justify-items: center;
+    overflow: auto;
 
     form {
         width: 60%;
@@ -121,6 +122,14 @@
                 width: 80%;
                 font-size: 12pt;
             }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .marco__formulario {
+        form {
+            width: 100%;
         }
     }
 }

@@ -1,9 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
 import { TareaInterface } from '../../../../models/tareas/tarea.interface';
 import { EstadosPipe } from '../../../../pipes/Estados/estados.pipe';
-import { Estado } from '../../../../models/enums/estados.enum';
 
 @Component({
     selector: 'app-form-actualizar-tarea',
@@ -13,7 +17,6 @@ import { Estado } from '../../../../models/enums/estados.enum';
     styleUrl: './form-actualizar-tarea.component.css',
 })
 export class FormActualizarTareaComponent {
-
     @Input() tareaAct!: TareaInterface;
     formActualizarTarea!: FormGroup;
     @Output() cancelar = new EventEmitter<boolean>();
@@ -26,7 +29,7 @@ export class FormActualizarTareaComponent {
             nombre: [this.tareaAct.nombre, Validators.required],
             descripcion: [this.tareaAct.descripcion, Validators.required],
             fecha: [this.tareaAct.fecha, Validators.required],
-            link: [this.tareaAct.link]
+            link: [this.tareaAct.link],
         });
     }
 
@@ -47,7 +50,12 @@ export class FormActualizarTareaComponent {
     }
 
     getValid(valor: string) {
-        return this.formActualizarTarea.get(valor)?.invalid && (this.formActualizarTarea.get(valor)?.dirty || this.formActualizarTarea.get(valor)?.touched) && this.formActualizarTarea.get(valor)?.errors?.['required'];
+        return (
+            this.formActualizarTarea.get(valor)?.invalid &&
+            (this.formActualizarTarea.get(valor)?.dirty ||
+                this.formActualizarTarea.get(valor)?.touched) &&
+            this.formActualizarTarea.get(valor)?.errors?.['required']
+        );
     }
 
     getValidBtn() {
