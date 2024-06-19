@@ -4,6 +4,7 @@ import { TareaPersistenciaInterface } from '../../models/tareas/tareasPersistenc
 import { Tarea } from '../../models/tareas/tarea.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CambioEstadoTareaInterface } from '../../models/tareas/cambioEstado.interface';
+import { Estado } from '../../models/enums/estados.enum';
 
 @Injectable({
     providedIn: 'root'
@@ -76,23 +77,23 @@ export class LocalStorageService {
         const { tarea, indice, eliminar } = cambio;
 
         if (
-            tarea.estado === 'FINALIZADO' ||
-            tarea.estado === 'CANCELADO'
+            tarea.estado === Estado.Finalizado ||
+            tarea.estado === Estado.Cancelado
         ) {
-            if (eliminar && indice !== undefined) {
+            if (eliminar && indice !== -1) {
                 this.tareas.activas.splice(indice, 1);
                 this.tareas.terminadas.push(tarea);
-            } else if (indice !== undefined) {
+            } else if (indice !== -1) {
                 this.tareas.terminadas[indice] = tarea;
             }
         } else if (
-            tarea.estado === 'ACTIVO' ||
-            tarea.estado === 'PAUSADO'
+            tarea.estado === Estado.Activo ||
+            tarea.estado === Estado.Pausa
         ) {
-            if (eliminar && indice !== undefined) {
+            if (eliminar && indice !== -1) {
                 this.tareas.terminadas.splice(indice, 1);
                 this.tareas.activas.push(tarea);
-            } else if (indice !== undefined) {
+            } else if (indice !== -1) {
                 this.tareas.activas[indice] = tarea;
             }
         } else {

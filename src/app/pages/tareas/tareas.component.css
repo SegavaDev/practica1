@@ -86,4 +86,13 @@
         }
     }
 }
+@media (max-height: 700px) {
+    .contenedor__tareas {
+        overflow: auto;
+
+        .tareas__opcion {
+            height: 300px;
+        }
+    }
+}
 @media (max-width: 350px) {}

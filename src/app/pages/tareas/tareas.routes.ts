@@ -7,5 +7,8 @@ export const TAREAS_ROUTES: Routes = [
     },
     {
         path: "activas", loadChildren: () => import("./tareas-activas/tActivas.routes").then(r => r.TAREAS_ACTIVAS_ROUTES)
+    },
+    {
+        path: 'finalizadas', loadChildren: () => import('./tareas-terminadas/tTerminadas.routes').then(r => r.TAREAS_TERMINADAS_ROUTES)
     }
 ]
