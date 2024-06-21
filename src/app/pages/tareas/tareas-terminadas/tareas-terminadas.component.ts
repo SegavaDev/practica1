@@ -5,7 +5,7 @@ import { NavComponent } from '../../../components/nav/nav.component';
 import { TablaTareasComponent } from '../tabla-tareas/tabla-tareas.component';
 import { ConfigDataTablaTareas } from '../../../models/tareas/configDataTabla.interface';
 import { TareaInterface } from '../../../models/tareas/tarea.interface';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../../../services/localStorage/local-storage.service';
 
 @Component({
   selector: 'app-tareas-terminadas',

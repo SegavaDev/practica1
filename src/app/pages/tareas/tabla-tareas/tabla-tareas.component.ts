@@ -44,7 +44,6 @@ export class TablaTareasComponent implements OnInit {
 
     ngOnInit(): void {
         const { columnas, data, btnsAccion } = this.configData;
-        console.log(this.configData);
 
         this.columnas = columnas;
         this.data = data;

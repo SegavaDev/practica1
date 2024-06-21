@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NavComponent } from '../../components/nav/nav.component';
 import { TareaPersistenciaInterface } from '../../models/tareas/tareasPersistencia.interface';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from '../../services/localStorage/local-storage.service';
 
 @Component({
     selector: 'app-tareas',

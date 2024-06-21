@@ -3,11 +3,12 @@ import { NoFoundComponent } from './pages/error/no-found/no-found.component';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: "", redirectTo: "tareas", pathMatch: "full"
+    },
+    {
+        path: 'tareas',
         loadChildren: () =>
-            import('./pages/web/landing/landing.routes').then(
-                (r) => r.LANDING_ROUTES
-            ),
+            import('./pages/tareas/tareas.routes').then((r) => r.TAREAS_ROUTES),
     },
     {
         path: '404',
