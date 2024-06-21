@@ -7,7 +7,7 @@ import { Estado } from '../../../models/enums/estados.enum';
 import { AccionesTablaTransa } from '../../../models/general/accionesTabla.interface';
 import { CambioEstadoTareaInterface } from '../../../models/tareas/cambioEstado.interface';
 import { TareaInterface } from '../../../models/tareas/tarea.interface';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../../../services/localStorage/local-storage.service';
 import { TablaTareasComponent } from '../tabla-tareas/tabla-tareas.component';
 import { ConfigDataTablaTareas } from '../../../models/tareas/configDataTabla.interface';
 
